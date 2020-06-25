@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper } from "@material-ui/core";
-
-interface IForecast {
-  date: number;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string
-}
+import { Treatment } from "../../models/treatment";
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Typography } from "@material-ui/core";
 
 interface IForecastState {
-  forecasts: IForecast[];
+  treatments: Treatment[];
   loading: boolean;
 }
 
@@ -18,34 +12,40 @@ export class FetchData extends Component<any, IForecastState> {
 
   constructor(props: any) {
     super(props);
-    this.state = { forecasts: [], loading: true };
+    this.state = { treatments: [], loading: true };
   }
 
   componentDidMount() {
     this.populateWeatherData();
   }
 
-  static renderForecastsTable(forecasts: IForecast[]) {
+  static renderForecastsTable(treatments: Treatment[]) {
     return (
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Fecha</TableCell>
-              <TableCell>Temperatura (C)</TableCell>
-              <TableCell>Temperatura (F)</TableCell>
-              <TableCell>Summary</TableCell>
+              <TableCell>ID</TableCell>
+              <TableCell>Cédula</TableCell>
+              <TableCell>Medicina</TableCell>
+              <TableCell>Cantidad</TableCell>
+              <TableCell>Enfermera</TableCell>
+              <TableCell>Doctor</TableCell>
+              <TableCell>Fecha de registro</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {forecasts.map((forecast: IForecast) => (
-              <TableRow key={forecast.summary}>
+            {treatments.map((treatment: Treatment) => (
+              <TableRow key={treatment.id}>
                 <TableCell component="th" scope="row">
-                  {forecast.date}
+                  {treatment.id}
                 </TableCell>
-                <TableCell align="right">{forecast.temperatureC}</TableCell>
-                <TableCell align="right">{forecast.temperatureF}</TableCell>
-                <TableCell align="right">{forecast.summary}</TableCell>
+                <TableCell align="left">{treatment.idCard}</TableCell>
+                <TableCell align="left">{treatment.medicine}</TableCell>
+                <TableCell align="left">{treatment.quantity}</TableCell>
+                <TableCell align="left">{treatment.nurse}</TableCell>
+                <TableCell align="left">{treatment.doctor}</TableCell>
+                <TableCell align="left">{treatment.registrationDate!.toString()}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -57,11 +57,11 @@ export class FetchData extends Component<any, IForecastState> {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : FetchData.renderForecastsTable(this.state.forecasts);
+      : FetchData.renderForecastsTable(this.state.treatments);
 
     return (
       <div>
-        <h1 id="tabelLabel" >Weather forecast</h1>
+        <Typography variant="h3">Tratamientos</Typography>
         <p>This component demonstrates fetching data from the server.</p>
         {contents}
       </div>
@@ -69,8 +69,8 @@ export class FetchData extends Component<any, IForecastState> {
   }
 
   async populateWeatherData() {
-    const response = await fetch('weatherforecast');
+    const response = await fetch('treatments');
     const data = await response.json();
-    this.setState({ forecasts: data, loading: false });
+    this.setState({ treatments: data, loading: false });
   }
 }
