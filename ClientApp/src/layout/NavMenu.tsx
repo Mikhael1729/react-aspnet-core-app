@@ -58,6 +58,10 @@ export function NavMenu() {
             <Link component={RouterLink} to="/counter" underline="none">
               <Button color="default">Counter</Button>
             </Link>
+
+            <Link component={RouterLink} to="/charts" underline="none">
+              <Button color="default">Charts</Button>
+            </Link>
           </div>
         </Toolbar>
       </AppBar>
