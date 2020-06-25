@@ -1,11 +1,11 @@
-import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import App from './App';
+import App from './screens/app/App';
 import registerServiceWorker from './registerServiceWorker';
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
+import { lightBlue } from "@material-ui/core/colors"
 import 'fontsource-roboto';
 
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
@@ -16,6 +16,9 @@ const theme = createMuiTheme({
     type: 'dark',
     background: {
       default: "#000000"
+    },
+    primary: {
+      main: lightBlue[300]
     }
   }
 })

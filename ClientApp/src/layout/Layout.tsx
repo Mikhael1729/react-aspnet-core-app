@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavMenu } from './NavMenu';
-import { CssBaseline, Typography, Container, Button } from "@material-ui/core"
+import { CssBaseline, Container } from "@material-ui/core"
 
 interface ILayoutProps {
   children: any;
