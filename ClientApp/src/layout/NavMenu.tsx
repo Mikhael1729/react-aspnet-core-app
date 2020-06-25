@@ -51,20 +51,8 @@ export function NavMenu() {
           </Typography>
 
           <div className={classes.pagesButtons}>
-            <Link component={RouterLink} to="/fetch-data" underline="none">
-              <Button color="default">Fetch Data</Button>
-            </Link>
-
-            <Link component={RouterLink} to="/counter" underline="none">
-              <Button color="default">Counter</Button>
-            </Link>
-
-            <Link component={RouterLink} to="/charts" underline="none">
-              <Button color="default">Charts</Button>
-            </Link>
-
-            <Link component={RouterLink} to="/add-treatment" underline="none">
-              <Button color="default">Agregar Tratamiento</Button>
+            <Link component={RouterLink} to="/situacion-actual" underline="none">
+              <Button color="default">Situacion Actual</Button>
             </Link>
           </div>
         </Toolbar>

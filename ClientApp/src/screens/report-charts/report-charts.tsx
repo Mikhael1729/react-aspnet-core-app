@@ -1,45 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Legend, Tooltip } from 'recharts';
 import { Typography } from "@material-ui/core"
+import { SituacionActual as SituacionActualModel } from "../../models/situacion-actual";
 
-const data01 = [
-  { name: 'Group A', value: 400 }, { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 }, { name: 'Group D', value: 200 },
-  { name: 'Group E', value: 278 }, { name: 'Group F', value: 189 },
-];
+export function SituacionActual() {
+  const [state, setState] = useState({ situaciones: [] as SituacionActualModel[], loading: true });
 
-const data02 = [
-  { name: 'Group A', value: 2400 }, { name: 'Group B', value: 4567 },
-  { name: 'Group C', value: 1398 }, { name: 'Group D', value: 9800 },
-  { name: 'Group E', value: 3908 }, { name: 'Group F', value: 4800 },
-];
+  async function populateWeatherData() {
+    const response = await fetch('covid/situacion-actual');
+    const data = await response.json() as SituacionActualModel[];
 
-export function ReportCharts() {
-  return (
-    <>
-      <Typography variant="h2">Gráficos</Typography>
+    setState({
+      loading: false,
+      situaciones: data
+    });
+  }
 
+  function renderChart() {
+    const { confirmados, descartados, fallecidos, recuperados }: SituacionActualModel = state.situaciones[0];
+
+    const data = [
+      { name: "Confirmados", value: confirmados },
+      { name: "Descartados", value: descartados },
+      { name: "Fallecidos", value: fallecidos },
+      { name: "Recuperados", value: recuperados },
+    ];
+
+    return (
       <PieChart width={400} height={400} style={{ margin: 0, padding: 0 }}>
         <Pie
           dataKey="value"
           isAnimationActive={false}
-          data={data01}
+          data={data}
           cx={200}
           cy={200}
           fill="#8884d8"
-          label
-        />
-        <Pie
-          dataKey="value"
-          data={data02}
-          cx={500}
-          cy={200}
-          innerRadius={40}
-          outerRadius={80}
-          fill="#82ca9d"
+          label={true}
+
         />
         <Tooltip />
       </PieChart>
+    );
+  }
+
+  useEffect(() => {
+    populateWeatherData();
+  }, [])
+
+  return (
+    <>
+      <Typography variant="h2">Situacion Actual</Typography>
+
+      {state.loading
+        ? <p><em>Loading...</em></p>
+        : renderChart()}
     </>
   );
 }

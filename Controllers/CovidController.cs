@@ -9,18 +9,23 @@ namespace TryMvcReact.Controllers
 
   [ApiController]
   [Route("[controller]")]
-  public class TreatmentsController : ControllerBase
+  public class CovidController : ControllerBase
   {
     TreatmentDbContext _context;
 
-    public TreatmentsController(TreatmentDbContext context) => _context = context;
+    public CovidController(TreatmentDbContext context) => _context = context;
 
-    // [HttpGet]
-    // public IEnumerable<Treatments> Get()
-    // {
-    //   var treatmentList = _context.Treatments.ToListAsync().Result;
-    //   return treatmentList;
-    // }
+    [HttpGet("situacion-actual")]
+    public IEnumerable<SituacionActual> Get()
+    {
+      string pais = "República Dominicana";
+      List<SituacionActual> situacionActual = _context.SituacionActual
+        .FromSqlInterpolated($"ObtenerSituacionActual {pais}")
+        .ToListAsync()
+        .Result;
+        
+      return situacionActual;
+    }
 
     // [HttpPost]
     // public async Task<ActionResult<Treatments>> PostTreatment(Treatments treatment)

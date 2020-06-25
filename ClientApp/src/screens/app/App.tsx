@@ -4,7 +4,7 @@ import { Layout } from '../../layout/Layout';
 import { Home } from '../home/Home';
 import { FetchData } from '../fetch-data/FetchData';
 import { Counter } from '../counter/Counter';
-import { ReportCharts } from "../report-charts/report-charts"
+import { SituacionActual } from "../report-charts/report-charts"
 import { AddTreatment } from "../add-treatment/add-treatment";
 
 export default class App extends Component {
@@ -16,7 +16,7 @@ export default class App extends Component {
         <Route exact path="/" component={Home} />
         <Route path="/counter" component={Counter} />
         <Route path="/fetch-data" component={FetchData} />
-        <Route path="/charts" component={ReportCharts} />
+        <Route path="/situacion-actual" component={SituacionActual} />
         <Route path="/add-treatment" component={AddTreatment} />
       </Layout>
     );
