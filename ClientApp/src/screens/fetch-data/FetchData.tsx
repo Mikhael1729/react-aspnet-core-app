@@ -45,7 +45,9 @@ export class FetchData extends Component<any, IForecastState> {
                 <TableCell align="left">{treatment.quantity}</TableCell>
                 <TableCell align="left">{treatment.nurse}</TableCell>
                 <TableCell align="left">{treatment.doctor}</TableCell>
-                <TableCell align="left">{treatment.registrationDate!.toString()}</TableCell>
+                <TableCell align="left">
+                  {treatment.registrationDate!.toString()}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

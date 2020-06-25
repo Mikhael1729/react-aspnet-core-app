@@ -5,6 +5,7 @@ import { Home } from '../home/Home';
 import { FetchData } from '../fetch-data/FetchData';
 import { Counter } from '../counter/Counter';
 import { ReportCharts } from "../report-charts/report-charts"
+import { AddTreatment } from "../add-treatment/add-treatment";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -16,6 +17,7 @@ export default class App extends Component {
         <Route path="/counter" component={Counter} />
         <Route path="/fetch-data" component={FetchData} />
         <Route path="/charts" component={ReportCharts} />
+        <Route path="/add-treatment" component={AddTreatment} />
       </Layout>
     );
   }

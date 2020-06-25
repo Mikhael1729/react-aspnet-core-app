@@ -62,6 +62,10 @@ export function NavMenu() {
             <Link component={RouterLink} to="/charts" underline="none">
               <Button color="default">Charts</Button>
             </Link>
+
+            <Link component={RouterLink} to="/add-treatment" underline="none">
+              <Button color="default">Agregar Tratamiento</Button>
+            </Link>
           </div>
         </Toolbar>
       </AppBar>
