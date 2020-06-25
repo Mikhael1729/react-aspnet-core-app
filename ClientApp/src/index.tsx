@@ -5,7 +5,7 @@ import App from './screens/app/App';
 import registerServiceWorker from './registerServiceWorker';
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import { lightBlue } from "@material-ui/core/colors"
+import { lightBlue, grey } from "@material-ui/core/colors"
 import 'fontsource-roboto';
 
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
@@ -15,12 +15,13 @@ const theme = createMuiTheme({
   palette: {
     type: 'dark',
     background: {
-      default: "#000000"
+      default: "#000000",
+      paper: "#000000"
     },
     primary: {
-      main: lightBlue[300]
-    }
-  }
+      main: lightBlue[300],
+    },
+  },
 })
 
 ReactDOM.render(

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavMenu } from './NavMenu';
-import { CssBaseline, Container } from "@material-ui/core"
+import { CssBaseline, Container, Box } from "@material-ui/core"
+import { grey } from "@material-ui/core/colors"
 
 interface ILayoutProps {
   children: any;
@@ -12,16 +13,13 @@ export class Layout extends Component<ILayoutProps, any> {
   render () {
     return (
       <div>
-        <NavMenu />
+        <Box borderBottom={1} color={grey[800]} mb={5}>
+          <NavMenu />
+        </Box>
 
         {/* Container */}
         <CssBaseline />
-        <Container maxWidth="lg">
-          {this.props.children}
-        </Container>
-
-        <Container>
-        </Container>
+        <Container maxWidth="lg">{this.props.children}</Container>
       </div>
     );
   }

@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography, Button, IconButton, Link } from "@material-ui/core";
 import { Menu as MenuIcon, Adjust as AdjustIcon } from "@material-ui/icons";
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
-import { grey } from "@material-ui/core/colors"
+import { grey, lightBlue } from "@material-ui/core/colors"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -12,9 +12,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     menuButton: {
       marginRight: theme.spacing(2),
+      color: theme.palette.primary.main
     },
     title: {
       marginRight: "2em",
+      color: theme.palette.primary.main
     },
     pagesButtons: {
       flexGrow: 1,
@@ -40,7 +42,6 @@ export function NavMenu() {
           <IconButton
             edge="start"
             className={classes.menuButton}
-            color="inherit"
             aria-label="menu"
           >
             <AdjustIcon />

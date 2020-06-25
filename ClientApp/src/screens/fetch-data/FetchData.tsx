@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper } from "@material-ui/core";
 
 interface IForecast {
   date: number;
@@ -26,26 +27,30 @@ export class FetchData extends Component<any, IForecastState> {
 
   static renderForecastsTable(forecasts: IForecast[]) {
     return (
-      <table className='table table-striped' aria-labelledby="tabelLabel">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-          </tr>
-        </thead>
-        <tbody>
-          {forecasts.map(forecast =>
-            <tr key={forecast.date}>
-              <td>{forecast.date}</td>
-              <td>{forecast.temperatureC}</td>
-              <td>{forecast.temperatureF}</td>
-              <td>{forecast.summary}</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+      <TableContainer component={Paper}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Fecha</TableCell>
+              <TableCell>Temperatura (C)</TableCell>
+              <TableCell>Temperatura (F)</TableCell>
+              <TableCell>Summary</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {forecasts.map((forecast: IForecast) => (
+              <TableRow key={forecast.summary}>
+                <TableCell component="th" scope="row">
+                  {forecast.date}
+                </TableCell>
+                <TableCell align="right">{forecast.temperatureC}</TableCell>
+                <TableCell align="right">{forecast.temperatureF}</TableCell>
+                <TableCell align="right">{forecast.summary}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     );
   }
 
