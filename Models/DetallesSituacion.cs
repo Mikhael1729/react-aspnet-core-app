@@ -1,8 +1,7 @@
 using System;
-using System.Data.SqlClient;
 using System.ComponentModel.DataAnnotations;
 
-namespace TryMvcReact
+namespace CovidReport.Models
 {
   public class DetalleSituacion
   {

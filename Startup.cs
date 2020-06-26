@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 
-namespace TryMvcReact
+namespace CovidReport
 {
     public class Startup
     {
@@ -43,7 +43,7 @@ namespace TryMvcReact
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddDbContext<TreatmentDbContext>(options =>
+            services.AddDbContext<CovidDbContext>(options =>
             options.UseSqlServer(
                 Configuration
                 .GetConnectionString("DefaultConnection"))

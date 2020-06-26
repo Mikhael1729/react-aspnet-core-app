@@ -1,7 +1,4 @@
-using System;
-using System.Data.SqlClient;
-
-namespace TryMvcReact
+namespace CovidReport.Models
 {
   public class SituacionActual
   {

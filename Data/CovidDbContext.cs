@@ -1,14 +1,14 @@
 using Microsoft.EntityFrameworkCore;
+using CovidReport.Models;
 
-namespace TryMvcReact
+namespace CovidReport
 {
-  public partial class TreatmentDbContext : DbContext
+  public partial class CovidDbContext : DbContext
   {
-    // public virtual DbSet<Treatments> Treatments { get; set; }
     public virtual DbSet<DetalleSituacion> DetallesSituacion { get; set; }
     public virtual DbSet<SituacionActual> SituacionActual { get; set; }
 
-    public TreatmentDbContext(DbContextOptions<TreatmentDbContext> options) : base(options)
+    public CovidDbContext(DbContextOptions<CovidDbContext> options) : base(options)
     { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
