@@ -10,10 +10,12 @@ import {
   TableBody,
   Paper,
   Typography,
+  Button,
   Box,
   Divider
 } from "@material-ui/core";
 import EqualizerRoundedIcon from '@material-ui/icons/EqualizerRounded';
+import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import { lightBlue, pink } from "@material-ui/core/colors"
 
 interface IForecastState {
@@ -126,7 +128,17 @@ export class FetchData extends Component<any, IForecastState> {
           </Box>
         </Box>
 
-        <br />
+        <Box m={2} />
+
+        <Button
+          variant="outlined"
+          color="default"
+          startIcon={<PictureAsPdfIcon />}
+        >
+          Convertir a PDF
+        </Button>
+
+        <Box m={4} />
 
         <Box display="flex" justifyContent="space-around" alignItems="flex-start" alignContent="flex-start">
           <Box flexGrow={1}>
