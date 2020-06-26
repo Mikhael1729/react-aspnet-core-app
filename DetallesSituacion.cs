@@ -1,13 +1,14 @@
 using System;
 using System.Data.SqlClient;
+using System.ComponentModel.DataAnnotations;
 
 namespace TryMvcReact
 {
   public class DetalleSituacion
   {
-    public int Id { get; set; }
-    public string Pais { get; set; }
+    [Key]
     public string Usuario { get; set; }
+    public string Pais { get; set; }
     public DateTime Fecha { get; set; }
     public int NuevosConfirmados { get; set; }
     public int NuevosFallecidos { get; set; }

@@ -54,6 +54,9 @@ export function NavMenu() {
             <Link component={RouterLink} to="/situacion-actual" underline="none">
               <Button color="default">Situacion Actual</Button>
             </Link>
+            <Link component={RouterLink} to="/detalles-situacion" underline="none">
+              <Button color="default">Detalles de Situación</Button>
+            </Link>
           </div>
         </Toolbar>
       </AppBar>

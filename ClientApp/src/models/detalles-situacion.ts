@@ -1,11 +1,11 @@
 export class DetalleSituacion {
-  pais?: string; 
-  usuario?: string; 
-  fecha?: Date; 
-  nuevosConfirmados?: number; 
-  nuevosFallecidos?: number; 
-  nuevosRecuperados?: number; 
-  nuevosDescartados?: number; 
+  pais: string; 
+  usuario: string; 
+  fecha: Date; 
+  nuevosConfirmados: number; 
+  nuevosFallecidos: number; 
+  nuevosRecuperados: number; 
+  nuevosDescartados: number; 
 
   constructor (detalleSituacion: DetalleSituacion) {
     this.pais = detalleSituacion.pais; 

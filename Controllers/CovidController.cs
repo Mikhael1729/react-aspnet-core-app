@@ -27,6 +27,19 @@ namespace TryMvcReact.Controllers
       return situacionActual;
     }
 
+
+    [HttpGet("detalles-situacion")]
+    public IEnumerable<DetalleSituacion> GetDetalleSituacion()
+    {
+      string pais = "República Dominicana";
+      List<DetalleSituacion> situacionActual = _context.DetallesSituacion
+        .FromSqlInterpolated($"ObtenerDetallesCasosPorPais {pais}")
+        .ToListAsync()
+        .Result;
+        
+      return situacionActual;
+    }
+
     // [HttpPost]
     // public async Task<ActionResult<Treatments>> PostTreatment(Treatments treatment)
     // {a
