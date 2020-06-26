@@ -51,11 +51,11 @@ export function NavMenu() {
           </Typography>
 
           <div className={classes.pagesButtons}>
+            <Link component={RouterLink} to="/" underline="none">
+              <Button color="default">Reporte de Situación</Button>
+            </Link>
             <Link component={RouterLink} to="/situacion-actual" underline="none">
               <Button color="default">Situacion Actual</Button>
-            </Link>
-            <Link component={RouterLink} to="/detalles-situacion" underline="none">
-              <Button color="default">Detalles de Situación</Button>
             </Link>
           </div>
         </Toolbar>

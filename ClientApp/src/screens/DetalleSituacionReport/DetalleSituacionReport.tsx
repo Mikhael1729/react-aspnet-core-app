@@ -12,8 +12,8 @@ interface IForecastState {
   modalIsOpen: boolean;
 }
 
-export class FetchData extends Component<any, IForecastState> {
-  static displayName = FetchData.name;
+export class DetalleSituacionReport extends Component<any, IForecastState> {
+  static displayName = DetalleSituacionReport.name;
 
   constructor(props: any) {
     super(props);
@@ -56,10 +56,10 @@ export class FetchData extends Component<any, IForecastState> {
 
     return (
       <div>
-        <Report 
-          title={title} 
-          detalles={this.state.detalles} 
-          actions={this.renderSaveButton()} 
+        <Report
+          title={title}
+          detalles={this.state.detalles}
+          actions={this.renderSaveButton()}
           loadingData={this.state.loading} />
 
         <ThemeProvider theme={theme}>
@@ -69,9 +69,9 @@ export class FetchData extends Component<any, IForecastState> {
             title="Guardar reporte"
             actionButtonText="Exportar a PDF"
           >
-            <Report 
-              detalles={this.state.detalles} 
-              title={title} 
+            <Report
+              detalles={this.state.detalles}
+              title={title}
               loadingData={this.state.loading} />
           </Modal>
         </ThemeProvider>
