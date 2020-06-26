@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router';
 import { Layout } from '../../layout/Layout';
 import { Home } from '../home/Home';
-import { FetchData } from '../fetch-data/FetchData';
+import { FetchData } from '../DetalleSituacionReport/DetalleSituacionReport';
 import { Counter } from '../counter/Counter';
 import { SituacionActual } from "../report-charts/report-charts"
 import { AddTreatment } from "../add-treatment/add-treatment";
