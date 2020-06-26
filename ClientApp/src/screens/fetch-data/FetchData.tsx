@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { DetalleSituacion } from "../../models/detalles-situacion";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
 import {
   TableContainer,
-  Avatar,
   Table,
   TableHead,
   TableRow,
@@ -12,27 +12,40 @@ import {
   Typography,
   Button,
   Box,
-  Divider
+  Divider,
+  Avatar,
 } from "@material-ui/core";
-import EqualizerRoundedIcon from '@material-ui/icons/EqualizerRounded';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
-import { lightBlue, pink } from "@material-ui/core/colors"
+import Pdf from "react-to-pdf";
+import { Modal } from './report/modal';
+import { Report } from "./report/report";
+import reportImage from "../../images/report.png";
 
 interface IForecastState {
   detalles: DetalleSituacion[];
   loading: boolean;
+  modalIsOpen: boolean;
 }
 
 export class FetchData extends Component<any, IForecastState> {
   static displayName = FetchData.name;
+  ref: any = React.createRef() as any;
 
   constructor(props: any) {
     super(props);
-    this.state = { detalles: [], loading: true };
+    this.state = { detalles: [], loading: true, modalIsOpen: false };
   }
 
   componentDidMount() {
     this.populateWeatherData();
+  }
+
+  private handleOpen = () => {
+    this.setState({ modalIsOpen: true });
+  }
+
+  private handleClose = () => {
+    this.setState({ modalIsOpen: false });
   }
 
   private computeSumarization(detalles: DetalleSituacion[]) {
@@ -92,53 +105,52 @@ export class FetchData extends Component<any, IForecastState> {
   }
 
   render() {
-    const { nuevosConfirmados, nuevosFallecidos, nuevosRecuperados, nuevosDescartados } = this.computeSumarization(this.state.detalles || []);
+    const theme = createMuiTheme({
+      palette: {
+        background: {
+          default: "#ffffff",
+          paper: "#ffffff"
+        },
+      }
+    });
 
+    const { nuevosConfirmados, nuevosFallecidos, nuevosRecuperados, nuevosDescartados } = this.computeSumarization(this.state.detalles || []);
+    const options = {
+        orientation: 'landscape',
+    };
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
       : FetchData.renderForecastsTable(this.state.detalles);
 
     return (
-      <div>
+      <div ref={this.ref}>
         <Box
           display="flex"
           flexDirection="row"
           justifyItems="center">
           <Box alignSelf="center">
-            <Box 
-              bgcolor="#000000" 
-              borderColor={pink[300]} 
-              border={2} 
-              borderRadius="50%"
-              width={50}
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              alignContent="center"
-              height={50}>
-              <Box alignSelf="center">
-                <EqualizerRoundedIcon width={40} height={40} color="secondary" />
-              </Box>
+            <Box alignSelf="center">
+              <Avatar src={reportImage} variant="square" />
             </Box>
           </Box>
-          <Box p={2}>
+          <Box p={2} flexGrow={1}>
             <Typography variant="h3">
-              Detalle de Situación
+              Reporte de Situación
             </Typography>
+          </Box>
+          <Box alignSelf="center">
+            <Button
+              variant="outlined"
+              color="default"
+              onClick={this.handleOpen}
+              startIcon={<PictureAsPdfIcon />}
+            >
+              Convertir a PDF
+            </Button>
           </Box>
         </Box>
 
-        <Box m={2} />
-
-        <Button
-          variant="outlined"
-          color="default"
-          startIcon={<PictureAsPdfIcon />}
-        >
-          Convertir a PDF
-        </Button>
-
-        <Box m={4} />
+        <Box m={7} />
 
         <Box display="flex" justifyContent="space-around" alignItems="flex-start" alignContent="flex-start">
           <Box flexGrow={1}>
@@ -162,6 +174,17 @@ export class FetchData extends Component<any, IForecastState> {
         <br />
 
         {contents}
+
+        <ThemeProvider theme={theme}>
+          <Modal
+            open={this.state.modalIsOpen}
+            handleClose={this.handleClose}
+            title="Guardar reporte"
+            actionButtonText="Exportar a PDF"
+          >
+            <Report detalles={this.state.detalles} />
+          </Modal>
+        </ThemeProvider>
       </div>
     );
   }
